@@ -1,6 +1,8 @@
-# Angular App base point
+[![Dependency Status](https://david-dm.org/senheng/angular-typescript-webpack.svg)](https://david-dm.org/senheng/angular-typescript-webpack) [![devDependency Status](https://david-dm.org/senheng/angular-typescript-webpack/dev-status.svg)](https://david-dm.org/senheng/angular-typescript-webpack#info=devDependencies)
 
-Starter kit for building an Angular 1.x app in Typescript.
+# Angular 1.x Typescript with Webpack
+
+Starter kit for building an Angular 1.x app using Typescript with webpack bundling.
 
 # Features
 
