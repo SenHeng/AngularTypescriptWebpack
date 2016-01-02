@@ -63,11 +63,11 @@ module.exports = function makeWebpackConfig (options) {
 
       // Filename for entry points
       // Only adds hash in build mode
-      filename: 'js/bundle.[hash].js',
+      filename: BUILD ? 'js/[name].[hash].js' : '[name].js',
 
       // Filename for non-entry points
       // Only adds hash in build mode
-      chunkFilename: 'js/bundle.[hash].js'
+      chunkFilename: BUILD ? 'js/[name].[hash].js' : '[name].js'
     }
   }
 
@@ -79,13 +79,21 @@ module.exports = function makeWebpackConfig (options) {
   if (TEST) {
     config.devtool = 'inline-source-map'
   } else if (BUILD) {
-    config.devtool = 'source-map'
+    config.devtool = 'cheap-module-source-map'
   } else {
     config.devtool = 'eval'
   }
 
+  /**
+   * Resolve
+   * Reference: http://webpack.github.io/docs/configuration.html#resolve
+   * Tells webpack where to find things
+   */
   config.resolve = {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
+    extensions: ['', '.ts', '.js'],
+    alias: {
+      lodash: __dirname + '/node_modules/lodash/'
+    }
   }
 
   /**
@@ -203,6 +211,12 @@ module.exports = function makeWebpackConfig (options) {
       new HtmlWebpackPlugin({
         template: 'app/index.html',
         inject: 'body'
+      }),
+
+      // Reference: https://webpack.github.io/docs/list-of-plugins.html#provideplugin
+      // Load modules into global namespace
+      new webpack.ProvidePlugin({
+          _: 'lodash'
       })
     )
   }
