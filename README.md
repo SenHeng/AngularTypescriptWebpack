@@ -4,6 +4,8 @@
 
 Starter kit for building an Angular 1.x app using Typescript with webpack bundling.
 
+[Demo site](https://senheng.github.io/angular-typescript-webpack/).
+
 # Features
 
 - Heavily commented webpack configuration with reasonable defaults.
