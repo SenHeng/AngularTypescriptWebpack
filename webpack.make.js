@@ -192,10 +192,7 @@ module.exports = function makeWebpackConfig (options) {
     // Disabled when in test mode or not in build mode
     new ExtractTextPlugin('css/bundle.[hash].css', {
       disable: !BUILD || TEST
-    }),
-    // Reference: https://github.com/johnagan/clean-webpack-plugin
-    // Cleans dist folder on compile
-    new clean(['dist'])
+    })
   ]
 
   // Skip index.html rendering in test mode
@@ -212,17 +209,23 @@ module.exports = function makeWebpackConfig (options) {
 
   // Add build specific plugins
   if (BUILD) {
-    // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-    // Only emit files when there are no errors
-    new webpack.NoErrorsPlugin(),
+    config.plugins.push(
+      // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
+      // Only emit files when there are no errors
+      new webpack.NoErrorsPlugin(),
 
-    // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-    // Dedupe modules in the output
-    new webpack.optimize.DedupePlugin(),
+      // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
+      // Dedupe modules in the output
+      new webpack.optimize.DedupePlugin(),
 
-    // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-    // Minify all javascript, switch loaders to minimizing mode
-    new webpack.optimize.UglifyJsPlugin()
+      // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+      // Minify all javascript, switch loaders to minimizing mode
+      new webpack.optimize.UglifyJsPlugin(),
+
+      // Reference: https://github.com/johnagan/clean-webpack-plugin
+      // Cleans dist folder on compile
+      new clean(['dist'])
+    )
   }
 
   /**
