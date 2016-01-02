@@ -2,7 +2,7 @@ export default class HomeController {
   public name;
 
   constructor() {
-    this.name = 'Homeasdf';
+    this.name = 'Home';
 
     // Just to show that _ works.
     console.log('_.first([1,2,3]): ', _.first([1, 2, 3]));
