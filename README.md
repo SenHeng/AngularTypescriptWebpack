@@ -1,4 +1,4 @@
-[![Dependency Status](https://david-dm.org/senheng/angular-typescript-webpack.svg)](https://david-dm.org/senheng/angular-typescript-webpack) [![devDependency Status](https://david-dm.org/senheng/angular-typescript-webpack/dev-status.svg)](https://david-dm.org/senheng/angular-typescript-webpack#info=devDependencies)
+[![Dependency Status](https://david-dm.org/senheng/ng1xts.svg)](https://david-dm.org/senheng/ng1xts) [![devDependency Status](https://david-dm.org/senheng/ng1xts/dev-status.svg)](https://david-dm.org/senheng/ng1xts#info=devDependencies)
 
 # Angular 1.x Typescript with Webpack
 
