@@ -43,3 +43,10 @@ This build was based on multiple articles by the amazing folks below and they de
 - [Typescript and webpack](http://www.jbrantly.com/typescript-and-webpack/) by [James Brantly](http://www.jbrantly.com/)
 - [React webpack cookbook](https://christianalfoni.github.io/react-webpack-cookbook/index.html) by [Christian Alfoni](http://www.christianalfoni.com/) and [Juho Vepsäläinen](http://survivejs.com/)
 - [webpack-howto](https://github.com/petehunt/webpack-howto) by [Pete Hunt](https://github.com/petehunt)
+
+# Todos
+
+- Tests
+- Better example(s)
+- Better gh-page
+- Better documentation
