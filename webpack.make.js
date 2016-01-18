@@ -140,19 +140,9 @@ module.exports = function makeWebpackConfig (options) {
     exclude: /node_modules/
   }
 
-  // LOCAL LESS LOADER
-  // Reference: https://github.com/webpack/less-loader
-  // LESS pre-processor for webpack
-  var lessLoader = {
-    test: /\.less$/,
-    include: __dirname + '/app',
-    loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss!less?sourceMap'),
-    exclude: /node_modules/
-  }
-
   // LOCAL SASS LOADER
   // Reference: https://github.com/jtangelder/sass-loader
-  // LESS pre-processor for webpack
+  // SASS pre-processor for webpack
   var sassLoader = {
     test: /\.scss$/,
     include: __dirname + '/app',
@@ -170,7 +160,7 @@ module.exports = function makeWebpackConfig (options) {
   }
 
   // Add loaders to list
-  config.module.loaders.push(tsLoader, lessLoader, sassLoader, globalCssLoader)
+  config.module.loaders.push(tsLoader, sassLoader, globalCssLoader)
 
   /**
    * PostCSS
