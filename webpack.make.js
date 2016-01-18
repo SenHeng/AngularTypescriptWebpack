@@ -40,7 +40,8 @@ module.exports = function makeWebpackConfig (options) {
     config.entry = {}
   } else {
     config.entry = {
-      app: './app/src/app.ts'
+      app: './app/src/app.ts',
+      vendors: ['angular', 'angular-ui-router']
     }
   }
 
@@ -217,6 +218,10 @@ module.exports = function makeWebpackConfig (options) {
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
       // Only emit files when there are no errors
       new webpack.NoErrorsPlugin(),
+
+      // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
+      // Splits commonly used code out into a separate file
+      new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
 
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
       // Dedupe modules in the output
