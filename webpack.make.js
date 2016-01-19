@@ -41,7 +41,7 @@ module.exports = function makeWebpackConfig (options) {
   } else {
     config.entry = {
       app: './app/src/app.ts',
-      vendors: ['angular', 'angular-ui-router']
+      vendors: ['angular', 'angular-ui-router', 'lodash']
     }
   }
 
