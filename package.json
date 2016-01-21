@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Starter kit for building an Angular 1.x app using Typescript with webpack bundling",
   "scripts": {
-    "build": "webpack --config webpack.build.js --bail -p --progress",
+    "build": "webpack --config webpack.build.js --bail --progress",
     "dev": "webpack-dev-server --history-api-fallback --hot --inline  --progress --display-error-details"
   },
   "author": "Sen",
