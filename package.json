@@ -13,8 +13,8 @@
   "bugs": {
     "url": "https://github.com/SenHeng/angular-typescript-webpack/issues"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "typescript": "^1.7.5"
   }
 }
