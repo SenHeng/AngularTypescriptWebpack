@@ -1,3 +1,2 @@
-# DEPRECATED [ 2017-02-20 ]
-
-Project moved to https://github.com/thelegendofcode/AngularTypescriptWebpack
+# AngularTypescriptWebpack
+Starter pack for AngularJS in Typescript with Webpack
