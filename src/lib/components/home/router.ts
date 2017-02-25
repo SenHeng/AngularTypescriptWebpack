@@ -8,10 +8,7 @@ export function router(
     url: '/home',
     component: 'homeComponent',
     resolve: {
-      hello: (HelloService) => {
-        HelloService.get()
-          .then(res => res);
-      }
+      hello: (HelloService) => HelloService.get().then(res => res)
     }
   });
 }
