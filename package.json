@@ -22,6 +22,7 @@
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {
+    "@types/angular": "^1.6.7",
     "autoprefixer": "^6.7.5",
     "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.26.2",
