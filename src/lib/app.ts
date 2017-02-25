@@ -1,16 +1,13 @@
-/// <reference path="../../typings/tsd.d.ts" />
+// Angular and related libraries
+import * as angular from 'angular';
+import 'angular-ui-router';
 
-import './app.assets';
-import {HomeModule} from './components/home';
-
+// Configurate Angular
 angular
   .module('app', [
-    'ui.router',
-    HomeModule.name
+    'ui.router'
   ])
-  .config((
-      $urlRouterProvider: ng.ui.IUrlRouterProvider
-      ) => {
-    $urlRouterProvider.otherwise('/');
-  })
   ;
+
+// Bootstrap angular
+angular.bootstrap(document, ['app'], { strictDi: true });
