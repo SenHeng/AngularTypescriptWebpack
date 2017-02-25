@@ -1,12 +1,14 @@
-'use strict';
+const 
+  autoprefixer = require('autoprefixer'),
+  path = require('path'),
+  webpack = require('webpack'),
 
-// Modules
-var autoprefixer = require('autoprefixer');
-var clean = require('clean-webpack-plugin');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+  // Webpack plugins
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  CopyWebpackPlugin = require('copy-webpack-plugin'),
+  UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+;
 /**
  * Make webpack config
  * @param {Object} options Builder options
@@ -37,12 +39,11 @@ module.exports = function makeWebpackConfig (options) {
    * Karma will set this when it's a test build
    */
   if (TEST) {
-    config.entry = {}
+    config.entry = {};
   } else {
     config.entry = {
-      app: './app/src/app.ts',
-      vendors: ['angular', 'angular-ui-router', 'lodash']
-    }
+      app: './src/lib/app.ts'
+    };
   }
 
   /**
@@ -52,15 +53,11 @@ module.exports = function makeWebpackConfig (options) {
    * Karma will handle setting it up for you when it's a test build
    */
   if (TEST) {
-    config.output = {}
+    config.output = {};
   } else {
     config.output = {
       // Absolute output directory
       path: __dirname + '/dist',
-
-      // Output path from the view of the page
-      // Uses webpack-dev-server in development
-      publicPath: BUILD ? '/' : 'http://localhost:8080/',
 
       // Filename for entry points
       // Only adds hash in build mode
@@ -69,7 +66,7 @@ module.exports = function makeWebpackConfig (options) {
       // Filename for non-entry points
       // Only adds hash in build mode
       chunkFilename: BUILD ? 'js/[name].[hash].js' : '[name].js'
-    }
+    };
   }
 
   /**
@@ -78,179 +75,150 @@ module.exports = function makeWebpackConfig (options) {
    * Type of sourcemap to use per build type
    */
   if (TEST) {
-    config.devtool = 'inline-source-map'
+    config.devtool = 'inline-source-map';
   } else if (BUILD) {
-    config.devtool = 'cheap-module-source-map'
+    config.devtool = 'cheap-module-source-map';
   } else {
-    config.devtool = 'eval'
+    config.devtool = 'eval';
   }
 
   /**
    * Resolve
-   * Reference: http://webpack.github.io/docs/configuration.html#resolve
-   * Tells webpack where to find things
+   * Reference: https://webpack.js.org/configuration/resolve/
+   * Tells webpack where to find what
    */
   config.resolve = {
-    extensions: ['', '.ts', '.js'],
+    extensions: ['.ts', '.js', '.json'],
     alias: {
-      lodash: __dirname + '/node_modules/lodash/'
+      app: path.join(__dirname, 'app')
     }
-  }
+  };
+
+  /**
+   * Resolve Loaders
+   * Reference: https://webpack.js.org/concepts/loaders/#resolving-loaders
+   * Tells webpack where to load modules from
+   */
+  config.resolveLoader = {
+    modules: ['node_modules']
+  };
 
   /**
    * Loaders
-   * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
-   * List: http://webpack.github.io/docs/list-of-loaders.html
-   * This handles most of the magic responsible for converting modules
+   * Reference: https://webpack.js.org/concepts/loaders/
+   * Rules for converting TS to JS, LESS to CSS
+   * moved to separate rules.js file
    */
-
-  // Initialise module
   config.module = {
-    preLoaders: [{
-      // TSLINT LOADER
-      // Reference: https://github.com/palantir/tslint
-      // Lint all TS files
-      test: /\.ts$/,
-      loader: 'tslint',
-      exclude: /node_modules/
-    }],
-    loaders: [{
-      // ASSET LOADER
-      // Reference: https://github.com/webpack/file-loader
-      // Copy png, jpg, jpeg, gif, svg, woff, ttf, eot files to output
-      // Rename the file using the asset hash
-      // Pass along the updated reference to your code
-      // You can add here any file extension you want to get copied to your output
-      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-      loader: 'file'
-    }, {
-      // HTML LOADER
-      // Reference: https://github.com/webpack/raw-loader
-      // Load HTML through JS
-      test: /\.html$/,
-      loader: 'raw'
-    }]
+    rules: [
+      {
+        test: /\.ts$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          configFile: './tslint.json',
+          failOnHint: true
+        },
+        exclude: 'node_modules'
+      },
+      {
+        test: /\.ts$/,
+        // loader: 'ng-annotate-loader!ts-loader',
+        loader: 'ts-loader',
+        exclude: 'node_modules'
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: '/node_modules/'
+      },
+      {
+        test: /\.(scss$|css$)/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?sourceMap',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [ require('autoprefixer') ]
+            }
+          },
+          'sass-loader?sourceMap'
+        ]})
+      },
+      { // handle fonts for FontAwesome 
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&minetype=application/font-woff&publicPath=../../&name=./assets/fonts/[hash].[ext]'
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader?publicPath=../../&name=./assets/fonts/[name].[ext]'
+      },
+      { // convert images to data-uris
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader?limit=8192'
+      }
+    ]
   };
-
-  // TS LOADER
-  // Reference: https://github.com/TypeStrong/ts-loader
-  // Transpile .ts files into ES5 code
-  var tsLoader = {
-    test: /\.ts$/,
-    loaders: ['ng-annotate', 'ts-loader'],
-    exclude: /node_modules/
-  }
-
-  // LOCAL SASS LOADER
-  // Reference: https://github.com/jtangelder/sass-loader
-  // SASS pre-processor for webpack
-  var sassLoader = {
-    test: /\.scss$/,
-    include: __dirname + '/app',
-    loader: ExtractTextPlugin.extract('style','css?sourceMap!postcss!sass?sourceMap'),
-    exclude: /node_modules/
-  }
-
-  // GLOBAL CSS LOADER
-  // Reference: https://github.com/webpack/css-loader
-  // Allow loading css through js
-  var globalCssLoader = {
-    test: /\.css$/,
-    include: __dirname + '/node_modules',
-    loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
-  }
-
-  // Add loaders to list
-  config.module.loaders.push(tsLoader, sassLoader, globalCssLoader)
-
-  /**
-   * PostCSS
-   * Reference: https://github.com/postcss/autoprefixer-core
-   * Add vendor prefixes to css
-   */
-  config.postcss = [
-    autoprefixer({ browsers: ['last 2 versions'] })
-  ]
-
-  /**
-   * TSLint
-   */
-  config.tslint = {
-    failOnHint: true,
-    configuration: require('./tslint.json')
-  }
 
   /**
    * Plugins
-   * Reference: http://webpack.github.io/docs/configuration.html#plugins
-   * List: http://webpack.github.io/docs/list-of-plugins.html
+   * Reference: https://webpack.js.org/configuration/plugins
    */
   config.plugins = [
-    // Reference: https://github.com/webpack/extract-text-webpack-plugin
-    // Move inline styles into separate CSS file
-    // Disabled when in test mode or not in build mode
-    new ExtractTextPlugin('css/bundle.[hash].css', {
-      disable: !BUILD || TEST
-    })
-  ]
+    new ExtractTextPlugin('assets/css/[name].[hash].css')
+  ];
 
-  // Skip index.html rendering in test mode
   if (!TEST) {
     config.plugins.push(
-      // Reference: https://github.com/ampedandwired/html-webpack-plugin
-      // Render index.html
       new HtmlWebpackPlugin({
-        template: 'app/index.html',
-        inject: 'body'
+        template: './src/index.html',
+        inject: 'body',
+        hash: true
       }),
-
-      // Reference: https://webpack.github.io/docs/list-of-plugins.html#provideplugin
-      // Load modules into global namespace
       new webpack.ProvidePlugin({
-          _: 'lodash'
+        // $: 'jquery',
+        // jQuery: 'jquery',
+        // 'window.jQuery': 'jquery'
+      }),
+      // new CopyWebpackPlugin([
+      //   // image assets
+      //   { from: 'src/assets/img', to: 'assets/img' },
+      //   // favicon
+      //   { from: 'src/favicon.png', to: 'favicon.png' },
+      //   // robots.txt
+      //   { from: 'src/robots.txt', to: 'robots.txt'}
+      // ]),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: (module) => {
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        }
       })
     )
   }
 
-  // Add build specific plugins
   if (BUILD) {
     config.plugins.push(
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-      // Only emit files when there are no errors
-      new webpack.NoErrorsPlugin(),
-
-      // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-      // Splits commonly used code out into a separate file
-      new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
-
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      // Dedupe modules in the output
-      new webpack.optimize.DedupePlugin(),
-
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-      // Minify all javascript, switch loaders to minimizing mode
-      new webpack.optimize.UglifyJsPlugin(),
-
-      // Reference: https://github.com/johnagan/clean-webpack-plugin
-      // Cleans dist folder on compile
-      new clean(['dist'])
+      new UglifyJSPlugin()
     )
   }
 
   /**
    * Dev server configuration
-   * Reference: http://webpack.github.io/docs/configuration.html#devserver
-   * Reference: http://webpack.github.io/docs/webpack-dev-server.html
+   * Reference: https://webpack.js.org/configuration/dev-server
    */
   config.devServer = {
-    contentBase: 'dist',
-    stats: {
-      modules: false,
-      cached: false,
-      colors: true,
-      chunk: false
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    hot: true,
+    port: 9000,
+    proxy: {
+      '/api/v1': 'http://localhost:8080'
     }
+    // uncomment for external access
+    // ,host: '0.0.0.0'
   }
 
-  return config
-}
+  return config;
+};
