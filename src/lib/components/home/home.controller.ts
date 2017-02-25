@@ -1,14 +1,11 @@
-export default class HomeController {
-  public name;
+export class HomeController {
+  hello: string;
 
-  constructor() {
-    this.name = 'Home';
-
-    // Just to show that _ works.
-    console.log('_.first([1,2,3]): ', _.first([1, 2, 3]));
+  $onInit() {
+    console.log('Home Controller Initiated.', this.hello);
   }
 
-  public changeName() {
-    this.name = 'Universe';
+  public change() {
+    this.hello = 'Goodbye World';
   }
 }

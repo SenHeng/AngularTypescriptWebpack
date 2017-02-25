@@ -1,19 +1,12 @@
-declare function require(name: string);
-import HomeController from './home.controller';
+import * as angular from 'angular';
+import { HomeController } from './home.controller';
+import { HomeComponent } from './home.component';
+import { router } from './router';
 
-export let HomeModule = angular.module('app.home', [])
-  .directive('appHome', () => {
-    return {
-      template: require('./home.html'),
-      controllerAs: 'ctrl',
-      controller: HomeController
-    };
-  })
-  .config(($stateProvider: any) => {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        template: '<app-home></app-home>'
-      });
-  })
+angular.module('component.home', [
+  'ui.router'
+])
+  .config(router)
+  .component('homeComponent', new HomeComponent)
+  .controller('homeController', HomeController)
   ;
