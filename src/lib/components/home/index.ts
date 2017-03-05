@@ -7,6 +7,6 @@ angular.module('component.home', [
   'ui.router'
 ])
   .config(router)
-  .component('homeComponent', new HomeComponent)
+  .component('homeComponent', new HomeComponent())
   .controller('homeController', HomeController)
   ;
