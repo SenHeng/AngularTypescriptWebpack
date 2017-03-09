@@ -21,10 +21,10 @@ yarn run build
 cd dist
 
 # Exit if the built output is unchanged
-if [ -z `git diff --exit-code` ]; then
-  echo "No changes to build, exiting."
-  exit 0
-fi
+# if [ -z `git diff --exit-code` ]; then
+#   echo "No changes to build, exiting."
+#   exit 0
+# fi
 
 # Commit contents in dist folder to gh-pages
 git config user.name "FourOfSeven via Travis CI"
