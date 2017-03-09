@@ -1,24 +1,27 @@
 {
   "name": "angular-typescript-webpack",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Starter kit for building an Angular 1.x app using Typescript with webpack bundling",
   "scripts": {
-    "cleanAll": "rm -rf node_modules/ && rm -rf dist/",
-    "cleanDist": "rm -rf dist/",
-    "prebuild": "yarn cleanDist",
+    "cleanAll": "rm -rf node_modules/ && yarn run cleanDist",
+    "cleanDist": "rm -rf dist/*",
+    "setupGhPages": "git clone https://github.com/thelegendofcode/AngularTypescriptWebpack.git -b gh-pages dist",
+
+    "prebuild": "yarn run cleanDist",
     "build": "webpack --config webpack.build.js --bail --progress",
-    "testBuild": "cd dist && http-server",
-    "prestart": "yarn cleanDist",
+    "testBuild": "cd dist && http-server && open http://localhost:8080",
+
+    "prestart": "yarn run cleanDist",
     "start": "webpack-dev-server --hot --inline  --progress --open"
   },
   "author": "Sen",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SenHeng/angular-typescript-webpack.git"
+    "url": "https://github.com/thelegendofcode/AngularTypescriptWebpack.git"
   },
   "bugs": {
-    "url": "https://github.com/SenHeng/angular-typescript-webpack/issues"
+    "url": "https://github.com/thelegendofcode/AngularTypescriptWebpack/issues"
   },
   "dependencies": {
     "angular": "^1.6.0",
