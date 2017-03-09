@@ -8,8 +8,8 @@
     "setupGhPages": "git clone https://github.com/thelegendofcode/AngularTypescriptWebpack.git -b gh-pages dist",
 
     "prebuild": "yarn run cleanDist",
-    "build": "webpack --config webpack.build.js --bail --progress",
-    "testBuild": "cd dist && http-server && open http://localhost:8080",
+    "build": "webpack --config webpack.build.js --bail",
+    "testBuild": "cd dist && http-server & open http://localhost:8080",
 
     "prestart": "yarn run cleanDist",
     "start": "webpack-dev-server --hot --inline  --progress --open"
