@@ -21,14 +21,14 @@ yarn run build
 cd dist
 
 # Exit if the built output is unchanged
-# if [ -z `git diff --exit-code` ]; then
-#   echo "No changes to build, exiting."
-#   exit 0
-# fi
+if [ -z `git diff --exit-code` ]; then
+  echo "No changes to build, exiting."
+  exit 0
+fi
 
 # Commit contents in dist folder to gh-pages
 git config user.name "FourOfSeven via Travis CI"
 git config user.email $GIT_USER_EMAIL
-git add .
+git add -A
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git"
