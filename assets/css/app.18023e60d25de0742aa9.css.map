@@ -1,1 +1,0 @@
-{"version":3,"file":"assets/css/app.18023e60d25de0742aa9.css","sources":["webpack:////./src/assets/scss/style.scss"],"sourcesContent":["h1 {\n  color: blue;\n}\nspan {\n  display: flex;\n}\n\n\n\n// WEBPACK FOOTER //\n// /./src/assets/scss/style.scss"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AAAA;AAAA;","sourceRoot":""}
