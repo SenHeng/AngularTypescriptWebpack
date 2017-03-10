@@ -6,11 +6,9 @@
     "cleanAll": "rm -rf node_modules/ && yarn run cleanDist",
     "cleanDist": "rm -rf dist/*",
     "setupGhPages": "git clone https://github.com/thelegendofcode/AngularTypescriptWebpack.git -b gh-pages dist",
-
     "prebuild": "yarn run cleanDist",
     "build": "webpack --config webpack.build.js --bail",
     "testBuild": "cd dist && http-server & open http://localhost:8080",
-
     "prestart": "yarn run cleanDist",
     "start": "webpack-dev-server --hot --inline  --progress --open"
   },
@@ -35,6 +33,7 @@
     "clean-webpack-plugin": "^0.1.15",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.2",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^2.0.0",
     "html-webpack-plugin": "^2.28.0",
     "http-server": "^0.9.0",
