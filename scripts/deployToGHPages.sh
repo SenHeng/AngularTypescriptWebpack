@@ -29,6 +29,6 @@ cd dist
 # Commit contents in dist folder to gh-pages
 git config user.name "FourOfSeven via Travis CI"
 git config user.email $GIT_USER_EMAIL
-git add .
+git add -A
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 git push "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git"
