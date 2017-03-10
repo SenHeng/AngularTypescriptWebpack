@@ -1,4 +1,7 @@
+![codeship]
+
 # AngularTypescriptWebpack
+
 Starter pack for AngularJS in Typescript comiled and bundled with Webpack
 
 ## Installation
@@ -19,3 +22,5 @@ The above command starts up webpack dev server and will recompile and refresh on
 The above command will compile and bundle everything into the `dist` folder. You can also create a quick ad-hoc server see if the compiled build works with the below command.
 
 1. `npm run testBuild` or `yarn run testBuild`
+
+[codeship]: https://codeship.com/projects/340515d0-e7e3-0134-c58f-1635a52dc88d/status?branch=master
