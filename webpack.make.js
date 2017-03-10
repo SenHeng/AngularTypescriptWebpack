@@ -140,7 +140,10 @@ module.exports = function makeWebpackConfig (options) {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [ require('autoprefixer') ]
+              plugins: () => [
+                require('autoprefixer'),
+                require('cssnano')
+              ]
             }
           },
           'sass-loader?sourceMap'
