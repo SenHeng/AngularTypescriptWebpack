@@ -1,4 +1,6 @@
+![travis-src]
 ![codeship]
+![circleci]
 
 # AngularTypescriptWebpack
 
@@ -24,3 +26,5 @@ The above command will compile and bundle everything into the `dist` folder. You
 1. `npm run testBuild` or `yarn run testBuild`
 
 [codeship]: https://codeship.com/projects/340515d0-e7e3-0134-c58f-1635a52dc88d/status?branch=master
+[travis-src]: https://travis-ci.org/thelegendofcode/AngularTypescriptWebpack.svg?branch=master
+[circleci]: https://circleci.com/gh/thelegendofcode/AngularTypescriptWebpack.svg?style=shield&circle-token=:circle-token
