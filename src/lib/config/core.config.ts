@@ -5,6 +5,6 @@ export function config(
 ) {
   // disable debug info to speed up app
   $compileProvider.debugInfoEnabled(false);
-};
+}
 
 config.$inject = ['$compileProvider'];

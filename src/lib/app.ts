@@ -1,6 +1,6 @@
 // Angular and related libraries
 import * as angular from 'angular';
-import 'angular-ui-router';
+import '@uirouter/angularjs';
 
 // App modules
 import { config } from './config/core.config';

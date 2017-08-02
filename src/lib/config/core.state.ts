@@ -1,4 +1,4 @@
-import { UrlService } from 'angular-ui-router';
+import { UrlService } from '@uirouter/angularjs';
 
 export function state(
   $urlServiceProvider: UrlService
