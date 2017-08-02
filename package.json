@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.3",
-    "angular": "^1.6.0",
+    "angular": "^1.6.5",
     "lodash": "^4.0.0",
     "normalize.css": "^7.0.0"
   },
