@@ -6,14 +6,11 @@
     "cleanAll": "rm -rf node_modules/ && yarn run cleanDist",
     "cleanDist": "rm -rf dist/*",
     "setupGhPages": "git clone https://github.com/thelegendofcode/AngularTypescriptWebpack.git -b gh-pages dist",
-
     "prebuild": "yarn run cleanDist",
     "build": "webpack --config webpack.build.js --bail",
     "testBuild": "cd dist && http-server & open http://localhost:8080",
-
     "prestart": "yarn run cleanDist",
     "start": "webpack-dev-server --hot --inline  --progress --open",
-
     "test": "karma start karma.conf.js"
   },
   "author": "Sen",
@@ -26,8 +23,8 @@
     "url": "https://github.com/thelegendofcode/AngularTypescriptWebpack/issues"
   },
   "dependencies": {
-    "angular": "^1.6.5",
-    "@uirouter/angularjs": "~1.0.3",
+    "@uirouter/angularjs": "^1.0.3",
+    "angular": "^1.6.0",
     "lodash": "^4.0.0",
     "normalize.css": "^7.0.0"
   },
@@ -41,8 +38,8 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "http-server": "^0.10.0",
-    "jasmine-core": "^2.5.2",
-    "karma": "^1.5.0",
+    "jasmine-core": "^2.7.0",
+    "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
     "node-sass": "^4.5.3",

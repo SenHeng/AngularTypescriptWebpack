@@ -6,7 +6,7 @@
   version "1.6.28"
   resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.28.tgz#e85d62c72c5fbd408b463cd2c9d24f75cc6bec98"
 
-"@uirouter/angularjs@~1.0.3":
+"@uirouter/angularjs@^1.0.3":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.5.tgz#ba559378ac981255f9a96212b7ef51fb82ec49b8"
   dependencies:
@@ -70,7 +70,7 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-angular@^1.6.5:
+angular@^1.6.0:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
@@ -2273,7 +2273,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-jasmine-core@^2.5.2:
+jasmine-core@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.7.0.tgz#50ff8c4f92d8ef5c0b2c1b846dd263ed85152091"
 
@@ -2369,7 +2369,7 @@ karma-jasmine@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.0.tgz#22e4c06bf9a182e5294d1f705e3733811b810acf"
 
-karma@^1.5.0:
+karma@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/karma/-/karma-1.7.0.tgz#6f7a1a406446fa2e187ec95398698f4cee476269"
   dependencies:
