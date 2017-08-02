@@ -119,13 +119,13 @@ module.exports = function makeWebpackConfig (options) {
           configFile: './tslint.json',
           failOnHint: true
         },
-        exclude: 'node_modules'
+        exclude: '/node_modules/'
       },
       {
         test: /\.ts$/,
         // loader: 'ng-annotate-loader!ts-loader',
         loader: 'ts-loader',
-        exclude: 'node_modules'
+        exclude: '/node_modules/'
       },
       {
         test: /\.html$/,
@@ -143,7 +143,8 @@ module.exports = function makeWebpackConfig (options) {
               plugins: () => [
                 require('autoprefixer'),
                 require('cssnano')
-              ]
+              ],
+              sourceMap: true
             }
           },
           'sass-loader?sourceMap'
