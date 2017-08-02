@@ -1,4 +1,4 @@
-import { StateProvider } from 'angular-ui-router';
+import { StateProvider } from '@uirouter/angularjs';
 import { HelloService } from '../../services/hello.service';
 
 export function router(
