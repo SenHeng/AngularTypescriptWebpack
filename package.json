@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/angular": "^1.6.28",
+    "angular-mocks": "^1.6.6",
     "autoprefixer": "^7.1.2",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
@@ -42,6 +43,7 @@
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^2.0.4",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
     "raw-loader": "^0.5.1",
