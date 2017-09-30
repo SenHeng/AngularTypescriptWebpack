@@ -5,7 +5,7 @@ cache:
   - node_modules
 language: node_js
 node_js:
-- '6'
+- '8'
 script: bash ./scripts/deployToGHPages.sh
 notifications:
   email: false
