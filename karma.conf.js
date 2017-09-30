@@ -19,7 +19,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/**/*.ts',
-      'test/**/*.spec.ts'
+      'test/**/*.spec.ts',
     ],
 
 
@@ -32,6 +32,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/**/*.ts': ['karma-typescript'],
+      'test/**/*.spec.ts': ['karma-typescript'],
     },
 
 
