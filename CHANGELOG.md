@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Karma
 
+### Updated
+- CircleCI to 2.0
+- TravisCI with headless chrome
+
 ## [2.1.1]
 ### Updated
 - Libraries and dependencies
