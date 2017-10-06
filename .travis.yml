@@ -1,4 +1,8 @@
-sudo: false
+dist: trusty
+addons:
+  chrome: stable
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:9876/ &
 cache:
   yarn: true
   directories:
