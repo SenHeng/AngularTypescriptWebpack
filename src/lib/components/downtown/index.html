@@ -1,0 +1,13 @@
+<h2>Total: {{ $ctrl.total }}</h2>
+
+<form>
+  <input type="number" ng-model="$ctrl.newNumber">
+  <button class="btn btn-default" ng-click="$ctrl.add()">
+    Add to total!
+  </button>
+</form>
+
+Numbers!
+<ul>
+  <li ng-repeat="n in $ctrl.numbers track by $index">{{ n }}</li>
+</ul>

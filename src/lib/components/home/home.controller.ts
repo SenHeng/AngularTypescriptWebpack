@@ -1,11 +1,12 @@
 export class HomeController {
   hello: string;
+  newGreeting: string = '';
 
   $onInit() {
     console.log('Home Controller Initiated.', this.hello);
   }
 
   public change() {
-    this.hello = 'Goodbye World';
+    this.hello = this.newGreeting;
   }
 }
