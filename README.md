@@ -1,5 +1,5 @@
 TravisCI: ![travis-ci]  
-CircleCI![circleci]  
+CircleCI: ![circleci]  
 CodeShip: ![codeship]
 
 # AngularTypescriptWebpack
